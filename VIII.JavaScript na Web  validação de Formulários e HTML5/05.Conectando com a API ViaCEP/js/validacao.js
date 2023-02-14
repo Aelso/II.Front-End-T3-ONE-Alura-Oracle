@@ -1,11 +1,11 @@
 export function valida(input) {
     const tipoDeInput = input.dataset.tipo
 
-    if(validadores[tipoDeInput]) {
+    if (validadores[tipoDeInput]) {
         validadores[tipoDeInput](input)
     }
 
-    if(input.validity.valid) {
+    if (input.validity.valid) {
         input.parentElement.classList.remove('input-container--invalido')
         input.parentElement.querySelector('.input-mensagem-erro').innerHTML = ''
     } else {
@@ -39,7 +39,7 @@ const mensagensDeErro = {
     },
     cpf: {
         valueMissing: 'O campo de CPF não pode estar vazio.',
-        customError: 'O CPF digitado não é válido.' 
+        customError: 'O CPF digitado não é válido.'
     },
     cep: {
         valueMissing: 'O campo de CEP não pode estar vazio.',
@@ -58,19 +58,19 @@ const mensagensDeErro = {
 }
 
 const validadores = {
-    dataNascimento:input => validaDataNascimento(input),
-    cpf:input => validaCPF(input),
-    cep:input => recuperarCEP(input)
+    dataNascimento: input => validaDataNascimento(input),
+    cpf: input => validaCPF(input),
+    cep: input => recuperarCEP(input)
 }
 
 function mostraMensagemDeErro(tipoDeInput, input) {
     let mensagem = ''
     tiposDeErro.forEach(erro => {
-        if(input.validity[erro]) {
+        if (input.validity[erro]) {
             mensagem = mensagensDeErro[tipoDeInput][erro]
         }
     })
-    
+
     return mensagem
 }
 
@@ -78,7 +78,7 @@ function validaDataNascimento(input) {
     const dataRecebida = new Date(input.value)
     let mensagem = ''
 
-    if(!maiorQue18(dataRecebida)) {
+    if (!maiorQue18(dataRecebida)) {
         mensagem = 'Você deve ser maior que 18 anos para se cadastrar.'
     }
 
@@ -96,7 +96,7 @@ function validaCPF(input) {
     const cpfFormatado = input.value.replace(/\D/g, '')
     let mensagem = ''
 
-    if(!checaCPFRepetido(cpfFormatado) || !checaEstruturaCPF(cpfFormatado)) {
+    if (!checaCPFRepetido(cpfFormatado) || !checaEstruturaCPF(cpfFormatado)) {
         mensagem = 'O CPF digitado não é válido.'
     }
 
@@ -119,7 +119,7 @@ function checaCPFRepetido(cpf) {
     let cpfValido = true
 
     valoresRepetidos.forEach(valor => {
-        if(valor == cpf) {
+        if (valor == cpf) {
             cpfValido = false
         }
     })
@@ -134,7 +134,7 @@ function checaEstruturaCPF(cpf) {
 }
 
 function checaDigitoVerificador(cpf, multiplicador) {
-    if(multiplicador >= 12) {
+    if (multiplicador >= 12) {
         return true
     }
 
@@ -142,12 +142,12 @@ function checaDigitoVerificador(cpf, multiplicador) {
     let soma = 0
     const cpfSemDigitos = cpf.substr(0, multiplicador - 1).split('')
     const digitoVerificador = cpf.charAt(multiplicador - 1)
-    for(let contador = 0; multiplicadorInicial > 1 ; multiplicadorInicial--) {
+    for (let contador = 0; multiplicadorInicial > 1; multiplicadorInicial--) {
         soma = soma + cpfSemDigitos[contador] * multiplicadorInicial
         contador++
     }
 
-    if(digitoVerificador == confirmaDigito(soma)) {
+    if (digitoVerificador == confirmaDigito(soma)) {
         return checaDigitoVerificador(cpf, multiplicador + 1)
     }
 
@@ -169,12 +169,12 @@ function recuperarCEP(input) {
         }
     }
 
-    if(!input.validity.patternMismatch && !input.validity.valueMissing) {
-        fetch(url,options).then(
+    if (!input.validity.patternMismatch && !input.validity.valueMissing) {
+        fetch(url, options).then(
             response => response.json()
         ).then(
             data => {
-                if(data.erro) {
+                if (data.erro) {
                     input.setCustomValidity('Não foi possível buscar o CEP.')
                     return
                 }
