@@ -1,10 +1,10 @@
-const criarTarefa = (evento) => { 
+const criarTarefa = (evento) => {
 
     evento.preventDefault()
 
     const input = document.querySelector('[data-form-input]')
     const valor = input.value
-    console.log( valor  )
+    console.log(valor)
     input.value = " "
 }
 

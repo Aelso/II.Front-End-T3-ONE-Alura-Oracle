@@ -1,4 +1,4 @@
-const BotaoDeleta = () => { 
+const BotaoDeleta = () => {
     const botaoDeleta = document.createElement('button')
 
     botaoDeleta.innerText = 'deletar'
@@ -7,9 +7,9 @@ const BotaoDeleta = () => {
     return botaoDeleta
 }
 
-const deletarTarefa = (evento) => { 
+const deletarTarefa = (evento) => {
     const botaoDeleta = evento.target
-    
+
     const tarefaCompleta = botaoDeleta.parentElement
 
     tarefaCompleta.remove()
