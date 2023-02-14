@@ -1,6 +1,6 @@
 import BotaoConclui from './componentes/concluiTarefa.js'
 import BotaoDeleta from './componentes/deletaTarefa.js'
- 
+
 
 const handleNovoItem = (evento) => {
     evento.preventDefault()
@@ -14,7 +14,7 @@ const handleNovoItem = (evento) => {
 
     const dataFormatada = data.format('DD/MM/YYYY')
 
-    const dados = { 
+    const dados = {
         valor,
         dataFormatada
     }
@@ -23,7 +23,7 @@ const handleNovoItem = (evento) => {
 
     lista.appendChild(criaTarefa)
 
-    sessionStorage.setItem('tarefas',  dados )
+    sessionStorage.setItem('tarefas', dados)
     input.value = " "
 }
 
@@ -37,7 +37,7 @@ const criarTarefa = ({ valor, dataFormatada }) => {
 
     tarefa.appendChild(BotaoConclui())
     tarefa.appendChild(BotaoDeleta())
-   
+
     return tarefa
 
 }
