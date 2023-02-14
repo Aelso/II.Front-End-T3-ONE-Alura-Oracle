@@ -8,10 +8,10 @@ const inputNome = document.querySelector('[data-nome]')
 const inputEmail = document.querySelector('[data-email]')
 
 clienteService.detalhaCliente(id)
-.then( dados => { 
-  inputNome.value = dados.nome
-  inputEmail.value = dados.email
-})
+  .then(dados => {
+    inputNome.value = dados.nome
+    inputEmail.value = dados.email
+  })
 
 const formulario = document.querySelector('[data-form]')
 

@@ -1,4 +1,4 @@
-const concluirTarefa = ( atualiza, id) => {
+const concluirTarefa = (atualiza, id) => {
     const tarefaCadastradas = JSON.parse(localStorage.getItem('tarefas'))
 
     tarefaCadastradas[id].concluida = !tarefaCadastradas[id].concluida
@@ -8,13 +8,13 @@ const concluirTarefa = ( atualiza, id) => {
 
 }
 
-const BotaoConclui = (atualiza, id) => { 
-    const botaoConclui = document.createElement('button')  
-    
+const BotaoConclui = (atualiza, id) => {
+    const botaoConclui = document.createElement('button')
+
     botaoConclui.classList.add('check-button')
     botaoConclui.innerText = 'concluir'
 
-    botaoConclui.addEventListener('click', ()=> concluirTarefa(atualiza, id))
+    botaoConclui.addEventListener('click', () => concluirTarefa(atualiza, id))
 
     return botaoConclui
 
